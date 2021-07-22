@@ -14,11 +14,11 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::get('/', [AuthenticatedSessionController::class, 'create'])->middleware('guest')->name('login');
+// Route::get('/', [AuthenticatedSessionController::class, 'create'])->middleware('guest')->name('login');
 
 
 Route::get('/dashboard', function () {
@@ -26,3 +26,24 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__ . '/auth.php';
+
+
+Route::get('/home', function () {
+    return view('home', [
+        "title" => 'Home',
+    ]);
+});
+
+Route::get('/about', function () {
+    return view('about', [
+        "title" => "Halaman About",
+    ]);
+});
+
+Route::get('/posts', function () {
+    return view('posts', [
+        "title" => "Posts Page",
+        "desc" => "Membuat halaman Post lewat roter dengan mengirimkan data",
+        "date" => date("Y-m-d H:i:s"),
+    ]);
+});
